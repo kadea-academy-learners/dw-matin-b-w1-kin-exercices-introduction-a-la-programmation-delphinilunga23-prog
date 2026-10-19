@@ -25,3 +25,17 @@ Quand peut-on enlever les parenthèses autour des paramètres, et quand peut-on 
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+// 1. Version classique renommée pour éviter les doublons
+function saluerClassique(prenom) {
+  return 'Mbote ' + prenom + ' !';
+}
+
+// 2. Fonction fléchée saluer sur une seule ligne avec un gabarit littéral
+const saluer = (prenom) => `Mbote ${prenom} !`;
+
+// 3. Fonction fléchée carre qui renvoie le carré d'un nombre (syntaxe courte)
+const carre = (nombre) => nombre ** 2;
+
+// 4. Affichage des résultats dans la console
+console.log(saluer('Lys'));
+console.log(carre(7));
