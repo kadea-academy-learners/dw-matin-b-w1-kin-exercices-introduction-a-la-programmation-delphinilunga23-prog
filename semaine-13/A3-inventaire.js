@@ -31,3 +31,60 @@ Comment afficher seulement les colonnes nom et stock avec console.table() ? Et q
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+
+
+// 1. Création du tableau d'objets de l'inventaire
+const produits = [
+    { id: 101, nom: "Clé USB 32 Go", categorie: "Informatique", prixFC: 14000, stock: 25 },
+    { id: 102, nom: "Sac à dos Kadea", categorie: "Accessoires", prixFC: 42000, stock: 0 },
+    { id: 103, nom: "Souris sans fil", categorie: "Informatique", prixFC: 28000, stock: 12 },
+    { id: 104, nom: "Gourde isotherme", categorie: "Accessoires", prixFC: 21000, stock: 8 },
+    { id: 105, nom: "Casque audio", categorie: "Informatique", prixFC: 70000, stock: 0 },
+    { id: 106, nom: "Carnet de notes", categorie: "Papeterie", prixFC: 7000, stock: 40 }
+];
+
+// 2. Affichage complet avec console.table()
+console.log("--- Inventaire complet ---");
+console.table(produits);
+
+// 3. Filtrer la catégorie Informatique avec .filter()
+const produitsInformatique = produits.filter((produit) => {
+    return produit.categorie === "Informatique";
+});
+console.log(`Nombre de produits Informatique : ${produitsInformatique.length}`);
+console.table(produitsInformatique);
+
+// 4. Ajouter le prix USD arrondi avec .map()
+const TAUX = 2800;
+const produitsAvecUsd = produits.map((produit) => {
+    return {
+        ...produit,
+        prixUSD: Math.round(produit.prixFC / TAUX)
+    };
+});
+console.log("--- Inventaire avec prix en USD ---");
+console.table(produitsAvecUsd);
+
+// 5. Fonction chercherProduit(id) avec .find() et gestion du undefined
+const chercherProduit = (idRecherche) => {
+    const produitTrouve = produits.find((produit) => {
+        return produit.id === idRecherche;
+    });
+
+    if (produitTrouve === undefined) {
+        return "Produit introuvable";
+    }
+
+    return produitTrouve;
+};
+
+console.log("--- Tests de recherche ---");
+console.log(chercherProduit(104)); // Renvoie l'objet de la gourde
+console.log(chercherProduit(999)); // Renvoie "Produit introuvable"
+
+// 6. Compter les produits en rupture de stock
+const produitsEnRupture = produits.filter((produit) => {
+    return produit.stock === 0;
+});
+
+console.log(`Nombre de produits en rupture de stock : ${produitsEnRupture.length}`);
