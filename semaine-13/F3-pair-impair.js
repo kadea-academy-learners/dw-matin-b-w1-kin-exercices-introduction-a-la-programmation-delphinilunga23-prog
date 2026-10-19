@@ -21,3 +21,21 @@ Que renvoie -7 % 2 ? Déduis-en pourquoi il vaut mieux tester % 2 !== 0 plutôt 
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+/**
+ * Détermine le lot gagné en fonction du numéro de ticket (pair ou impair).
+ * 
+ * @param {number} numeroTicket - Le numéro du ticket de tombola.
+ */
+const verifierLotTombola = (numeroTicket) => {
+    // Utilisation de l'opérateur modulo (%) et de la comparaison stricte (=== ou !==)
+    if (numeroTicket % 2 === 0) {
+        console.log(`Ticket ${numeroTicket} : pair, tu gagnes un tote bag.`);
+    } else {
+        console.log(`Ticket ${numeroTicket} : impair, tu gagnes un stylo.`);
+    }
+};
+
+// --- Tests avec les numéros demandés ---
+verifierLotTombola(17);
+verifierLotTombola(24);
+verifierLotTombola(0);
