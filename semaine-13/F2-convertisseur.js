@@ -22,3 +22,36 @@ Qu'est-ce que NaN, et pourquoi NaN === NaN renvoie false ? Quelle fonction utili
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+
+// 1. Déclaration de la variable saisie sous forme de chaîne de caractères
+const saisie = "2500";
+
+// Affiche "2500500" au lieu de 3000
+console.log(saisie + 500);
+
+// 2. Explication : 
+// Le résultat est faux car "saisie" est de type String (texte). 
+// L'opérateur "+" effectue alors une concaténation (assemblage de textes) 
+// au lieu d'une addition mathématique.
+
+// 3. Correction avec Number() et affichage du bon total (3000)
+const montantConverti = Number(saisie);
+const montantTotal = montantConverti + 500;
+console.log(montantTotal);
+
+// 4. Prédictions et vérifications des conversions avec Number()
+// Prédictions :
+// Number('')   -> 0 (une chaîne vide est convertie en 0)
+// Number('abc') -> NaN (texte non numérique impossible à convertir)
+// Number(' 42 ') -> 42 (les espaces aux extrémités sont ignorés)
+// Number(true) -> 1 (le booléen true est converti en 1)
+
+const testChaineVide = Number("");
+const testTexteInvalide = Number("abc");
+const testEspaces = Number(" 42 ");
+const testBooleen = Number(true);
+
+console.log(`Résultat Number(''): ${testChaineVide}`);
+console.log(`Résultat Number('abc'): ${testTexteInvalide}`);
+console.log(`Résultat Number(' 42 '): ${testEspaces}`);
+console.log(`Résultat Number(true): ${testBooleen}`);
