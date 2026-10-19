@@ -51,3 +51,25 @@ const afficher = () => {
 };
 console.log(afficher());
 console.log(secret);
+
+
+// Mes prédictions (avant d'exécuter) :
+// 1. Le script va afficher 'Kinshasa'.
+// 2. Il va ensuite s'interrompre avec une ReferenceError (commune is not defined) 
+//    car 'commune' est déclarée avec 'const' à l'intérieur du bloc if et est inaccessible à l'extérieur.
+// 3. La fonction afficher() et les lignes suivantes ne s'exécuteront pas.
+
+const ville = 'Kinshasa';
+if (true) {
+  const commune = 'Gombe';
+  console.log(ville);
+  console.log(commune); // Corrigé : affiché à l'intérieur du bloc où 'commune' existe
+}
+
+const afficher = () => {
+  const secret = 'pondu';
+  return secret;
+};
+
+console.log(afficher()); 
+// console.log(secret); // Supprimé : 'secret' a une portée de fonction et n'est pas accessible ici

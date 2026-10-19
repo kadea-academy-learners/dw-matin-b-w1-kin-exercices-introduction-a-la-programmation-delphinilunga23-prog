@@ -24,3 +24,44 @@ Pourquoi 0.1 + 0.2 ne donne-t-il pas 0.3 en JavaScript ? Et pourquoi toFixed() e
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+
+
+
+const calculerLivraison = (distanceKm, poidsKg, estUrgent = false) => {
+    let tarifBase = 0;
+
+    // Étape 1 : Tarif de base selon la distance
+    if (distanceKm <= 5) {
+        tarifBase = 2000;
+    } else if (distanceKm <= 15) {
+        tarifBase = 4000;
+    } else {
+        tarifBase = 7000;
+    }
+
+    // Étape 2 : Supplément poids (> 10 kg)
+    if (poidsKg > 10) {
+        tarifBase += 1500;
+    }
+
+    // Étape 3 : Majoration si urgent (comparaison stricte)
+    if (estUrgent === true) {
+        tarifBase *= 1.5;
+    }
+
+    // Étape 4 : Ajout de la TVA (16 %) et arrondi à l'entier
+    const tauxTva = 0.16;
+    const montantTotal = tarifBase * (1 + tauxTva);
+
+    return Math.round(montantTotal);
+};
+
+// --- Tests avec des gabarits littéraux pour les messages ---
+const resultatUn = calculerLivraison(3, 2);
+console.log(`Montant de la première livraison : ${resultatUn} FC`);
+
+const resultatDeux = calculerLivraison(10, 12, true);
+console.log(`Montant de la deuxième livraison : ${resultatDeux} FC`);
+
+const resultatTrois = calculerLivraison(20, 5);
+console.log(`Montant de la troisième livraison : ${resultatTrois} FC`);

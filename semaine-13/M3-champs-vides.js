@@ -21,3 +21,14 @@ Quelle est la liste complète des valeurs falsy en JavaScript ? (Indice : il y e
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+// 1. Fonction fléchée avec ternaire pour détecter si une valeur est truthy ou falsy
+const estRempli = (valeur) => (valeur ? 'rempli' : 'vide');
+
+// 2 & 3. Tableau des valeurs à tester (avec prédictions associées)
+// Prédictions : '', 0, null, undefined, NaN, false -> 'vide'
+// 'Esther', 42, ' ', '0' -> 'rempli'
+const valeurs = ['', 'Esther', 0, 42, null, undefined, NaN, ' ', '0', false];
+
+valeurs.forEach((val) => {
+  console.log(estRempli(val));
+});
