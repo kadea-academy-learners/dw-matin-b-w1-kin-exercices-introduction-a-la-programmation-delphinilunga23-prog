@@ -22,3 +22,59 @@ La méthode .reduce() n'a pas été vue en atelier. Explique ce qu'elle fait et 
 // ✍️ Ton code ici 👇 (règles : const/let, ===, gabarits littéraux, fonctions fléchées, camelCase)
 
 
+
+
+
+const calculerSalaire = (heures, tauxHoraire = 2500) => {
+    let totalHeures = 0;
+
+    // Étape 2 : Calcul du total des heures avec .forEach()
+    heures.forEach((heureJour) => {
+        totalHeures += heureJour;
+    });
+
+    let salaireTotal = 0;
+    const limiteHeuresNormales = 40;
+    const majorationUrgence = 1.5;
+
+    // Étape 3 : Gestion des heures supplémentaires
+    if (totalHeures <= limiteHeuresNormales) {
+        salaireTotal = totalHeures * tauxHoraire;
+    } else {
+        const heuresNormales = limiteHeuresNormales;
+        const heuresSupplementaires = totalHeures - limiteHeuresNormales;
+        
+        salaireTotal = (heuresNormales * tauxHoraire) + (heuresSupplementaires * tauxHoraire * majorationUrgence);
+    }
+
+    return salaireTotal;
+};
+
+// --- Données initiales ---
+const heuresSemaine = [8, 9, 10, 8, 7, 6]; // du lundi au samedi
+const joursSemaine = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+
+// Calcul du total des heures pour l'affichage final
+let totalHeuresSemaine = 0;
+heuresSemaine.forEach((heure) => {
+    totalHeuresSemaine += heure;
+});
+
+// Appel de la fonction de calcul du salaire
+const salaireFinal = calculerSalaire(heuresSemaine);
+
+// Étape 4 : Recherche du jour le plus chargé avec une boucle for
+let maxHeures = heuresSemaine[0];
+let indexJourMax = 0;
+
+for (let i = 0; i < heuresSemaine.length; i++) {
+    if (heuresSemaine[i] > maxHeures) {
+        maxHeures = heuresSemaine[i];
+        indexJourMax = i;
+    }
+}
+
+const jourLePlusCharge = joursSemaine[indexJourMax];
+
+// Affichage du résultat avec un gabarit littéral
+console.log(`Total : ${totalHeuresSemaine} h — Salaire : ${salaireFinal} FC ; jour le plus chargé : ${jourLePlusCharge} (${maxHeures} h).`);
